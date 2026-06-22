@@ -171,6 +171,12 @@ do
   -- instead raise a dialog asking if you wish to save the current file(s)
   -- See `:help 'confirm'`
   vim.o.confirm = true
+
+  vim.opt.tabstop = 2       -- A tab character displays as 2 spaces
+  vim.opt.shiftwidth = 2    -- >> << and auto-indent use 2 spaces
+  vim.opt.softtabstop = 2   -- Tab/Backspace feel like 2 spaces
+  vim.opt.expandtab = true  -- Insert spaces instead of actual tab characters
+
 end
 
 -- ============================================================
@@ -741,8 +747,8 @@ do
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
     --
-    -- But for many setups, the LSP (`rust_analyzer`) will work just fine
-    -- rust_analyzer = {},
+    -- But for many setups, the LSP (`ts_ls`) will work just fine
+    ts_ls = {},
 
     stylua = {}, -- Used to format Lua code
 
