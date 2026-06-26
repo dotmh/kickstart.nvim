@@ -91,7 +91,11 @@ P.S. You can delete this when you're done too. It's your config now! :)
 do
   -- Enable faster startup by caching compiled Lua modules
   vim.loader.enable()
-
+  -- Word Wrap
+  vim.opt.wrap = true
+  vim.opt.linebreak = true
+  vim.opt.breakindent = true -- Optional, but highly recommended
+  
   -- Set <space> as the leader key
   -- See `:help mapleader`
   --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
