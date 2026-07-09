@@ -633,6 +633,31 @@ do
 
   -- Shortcut for searching your Neovim configuration files
   vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config', follow = true } end, { desc = '[S]earch [N]eovim files' })
+
+  -- File explorer: Neo-tree
+vim.pack.add {
+  { src = gh 'nvim-neo-tree/neo-tree.nvim', version = vim.version.range '3' },
+  gh 'MunifTanjim/nui.nvim',
+  gh 'nvim-lua/plenary.nvim',
+}
+
+require('neo-tree').setup {
+  window = {
+    position = 'left',
+    width = 35,
+  },
+  filesystem = {
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = false,
+    },
+    use_libuv_file_watcher = true,
+  },
+}
+
+vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle reveal left<CR>', { desc = 'Toggle file [E]xplorer' })
+vim.keymap.set('n', '<leader>E', '<cmd>Neotree focus filesystem left<CR>', { desc = 'Focus file [E]xplorer' })
+
 end
 
 -- ============================================================
