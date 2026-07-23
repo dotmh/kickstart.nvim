@@ -114,7 +114,7 @@ do
   vim.o.number = true
   -- You can also add relative line numbers, to help with jumping.
   --  Experiment for yourself to see if you like it!
-  -- vim.o.relativenumber = true
+  vim.o.relativenumber = true
 
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
@@ -260,6 +260,26 @@ do
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
     callback = function() vim.hl.on_yank() end,
+  })
+
+    -- Use relative numbers in Normal mode and absolute numbers in Insert mode
+  local line_number_group =
+    vim.api.nvim_create_augroup('kickstart-line-numbers', { clear = true })
+
+  vim.api.nvim_create_autocmd('InsertEnter', {
+    group = line_number_group,
+    desc = 'Use absolute line numbers in Insert mode',
+    callback = function()
+      vim.wo.relativenumber = false
+    end,
+  })
+
+  vim.api.nvim_create_autocmd('InsertLeave', {
+    group = line_number_group,
+    desc = 'Use relative line numbers in Normal mode',
+    callback = function()
+      vim.wo.relativenumber = true
+    end,
   })
 end
 
@@ -769,7 +789,7 @@ do
   ---@type table<string, vim.lsp.Config>
   local servers = {
     -- clangd = {},
-    -- gopls = {},
+    gopls = {},
     -- pyright = {},
     -- tsc = {},
     --
