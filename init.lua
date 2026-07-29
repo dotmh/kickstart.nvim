@@ -191,6 +191,16 @@ do
   -- [[ Basic Keymaps ]]
   --  See `:help vim.keymap.set()`
 
+  -- Delete selected text without overwriting the clipboard/register.
+  vim.keymap.set('x', '<leader>d', '"_d', {
+    desc = '[D]elete selection without yanking',
+  })
+
+  -- Replace selected text while preserving the text being pasted.
+  vim.keymap.set('x', 'p', '"_dP', {
+    desc = 'Paste without overwriting register',
+  })
+
   -- Clear highlights on search when pressing <Esc> in normal mode
   --  See `:help hlsearch`
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
